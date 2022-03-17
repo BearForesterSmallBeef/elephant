@@ -9,6 +9,11 @@ logging.basicConfig(level=logging.INFO)
 sessionStorage = {}
 
 
+@app.route('/')
+def index():
+    return 'Hello, world!'
+
+
 @app.route('/post', methods=['POST'])
 def main():
     logging.info('Request: %r', request.json)
