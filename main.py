@@ -7,7 +7,7 @@ import json
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 sessionStorage = {}
-word = "слона"
+
 
 @app.route('/')
 def index():
@@ -35,7 +35,6 @@ def main():
 
 def handle_dialog(req, res):
     user_id = req['session']['user_id']
-    global word
 
     if req['session']['new']:
         sessionStorage[user_id] = {
@@ -45,7 +44,7 @@ def handle_dialog(req, res):
                 "Отстань!",
             ]
         }
-        res['response']['text'] = f'Привет! Купи {word}!'
+        res['response']['text'] = 'Привет! Купи слона!'
         res['response']['buttons'] = get_suggests(user_id)
         return
 
@@ -57,12 +56,11 @@ def handle_dialog(req, res):
         'я покупаю',
         'я куплю'
     ]:
-        res['response']['text'] = f'{word} можно найти на Яндекс.Маркете!'
-        res['response']['end_session'] = False
-        word = 'кролика'
+        res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
+        res['response']['end_session'] = True
         return
 
-    res['response']['text'] = f'Все говорят "%s", а ты купи {word}!' % (
+    res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
         req['request']['original_utterance']
     )
     res['response']['buttons'] = get_suggests(user_id)
@@ -82,7 +80,7 @@ def get_suggests(user_id):
     if len(suggests) < 2:
         suggests.append({
             "title": "Ладно",
-            "url": f"https://market.yandex.ru/search?text={word[:-1]}",
+            "url": "https://market.yandex.ru/search?text=слон",
             "hide": True
         })
 
