@@ -57,7 +57,7 @@ def handle_dialog(req, res):
         'я куплю'
     ]:
         res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
-        res['response']['end_session'] = True
+        res['response']['end_session'] = False
         return
 
     res['response']['text'] = 'Все говорят "%s", а ты купи слона!' % (
