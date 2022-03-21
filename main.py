@@ -60,7 +60,7 @@ def handle_dialog(req, res):
         'я куплю'
     ]:
         res['response']['text'] = f'{word.capitalize()} можно найти на Яндекс.Маркете!'
-        res['response']['end_session'] = True
+        res['response']['end_session'] = False
         global word
         word = 'кролика'
         return
