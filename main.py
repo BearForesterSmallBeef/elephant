@@ -17,7 +17,6 @@ def index():
 
 @app.route('/post', methods=['POST'])
 def main_1():
-    from main import word
     logging.info('Request: %r', request.json)
 
     response = {
@@ -36,7 +35,7 @@ def main_1():
 
 
 def handle_dialog(req, res):
-    from main import word
+    global word
     user_id = req['session']['user_id']
 
     if req['session']['new']:
@@ -72,7 +71,7 @@ def handle_dialog(req, res):
 
 
 def get_suggests(user_id):
-    from main import word
+    global word
     session = sessionStorage[user_id]
 
     suggests = [
